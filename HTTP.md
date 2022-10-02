@@ -42,3 +42,4 @@ In basic Auth there is no way to Revoke/logout user & is also insecure. Hence, o
 General flow is like server sets a cookie, sessionID at client side using which it makes connection stateful and delete cookie or session at time of revoking.
 
 ---
+![HTTP Auth](images/HTTP-Auth.jpg)
