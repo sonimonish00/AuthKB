@@ -1,4 +1,5 @@
 
+
 **NOTE :**
  - There are 3 Main People/Group of people/Org responsible of modern day web dev : 
     - **Tim berner lee** : URl, WWW, HTTP, HTML 
@@ -41,6 +42,20 @@
 **HTTP Auth (Basic) Vs. Other Auth Mechanism (Cookies/SessionID) :**
 In basic Auth there is no way to Revoke/logout user & is also insecure. Hence, other Auth mechanisms like cookie based, Session/Token/JWT based approach is used where server after authentication. 
 General flow is like server sets a cookie, sessionID at client side using which it makes connection stateful and delete cookie or session at time of revoking.
+
+---
+#### App Server vs Web server : 
+Apache/Ngnix HTTP/Httpd web servers are written in C/C++, so they cannot execute Python/node/php code directly, a bridge is needed b/w the web server and the program. These bridges/interfaces/CGI/mod_wsgi, define how programs interact with the web server. This Bridge is Application server.
+
+    Program (py) <-> App server (py mod_wsgi module) <-> web server (apache/ngnix http/httpd)
+
+The dynamically generated urls are passed from the WebServer to the Application server. The application servers matches to url and runs the script for that route. It then returns the response to the WebServer which formulates an HTTP Response and returns it to the client. Earlier, Programs using CGI to communicate with their web server need to be started by the server for every request. So, every request starts a new Python interpreter – which takes some time to start up – thus making the whole interface only usable for low load situations. Hence WSGI, FastCGI all comes into the scene lateron. 
+
+In RedHat, the httpd itself configures and give access to use CGI. Any code written in the folder /var/www/cgi-bin is treated as CGI. Here the client can only run the program but cannot change the code. While in /var/www/html the file is treated as web page and httpd provides the facility of viewing the page only.  To access the cgi code the client need to provide the URL on web browser. So every CGI program is nothing but API’s that can be accessed by any user. This is how API works.
+
+---
+#### CGI/WSGI/FastCGI/Web Service/Web Server Vs API : 
+API work because of CGI. CGI is like a gate which allows any user to go in the OS and run the program. Earlier CGI used to create dynamic pages/web forms to execute a script/command/run some logic in backend and give the output back to frontend. Dynamic web sites are not based on files in the file system, but rather on programs which are run by the web server when a request comes in, and which generate the content that is returned to the user. Every web-service or web programs work on the concept of CGI.  Whenever we want to run a program in another OS without networking/Remote Login/SSH, make the code as CGI code in the web server. API also works on the concept of CGI. In the URL, we provide a PROGRAM name, so the client can interfere in the server by using program known as INTERFACE/WSGI and run APPLICATION typically known as API/send json response/send text or html/execute py script file etc. CGI helps the client to come inside the server and after the client enters it all depends on API, which program to run.
 
 ---
 ![HTTP Auth](images/HTTP-Auth.jpg)
