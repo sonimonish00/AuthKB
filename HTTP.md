@@ -58,4 +58,26 @@ In RedHat, the httpd itself configures and give access to use CGI. Any code writ
 API work because of CGI. CGI is like a gate which allows any user to go in the OS and run the program. Earlier CGI used to create dynamic pages/web forms to execute a script/command/run some logic in backend and give the output back to frontend. Dynamic web sites are not based on files in the file system, but rather on programs which are run by the web server when a request comes in, and which generate the content that is returned to the user. Every web-service or web programs work on the concept of CGI.  Whenever we want to run a program in another OS without networking/Remote Login/SSH, make the code as CGI code in the web server. API also works on the concept of CGI. In the URL, we provide a PROGRAM name, so the client can interfere in the server by using program known as INTERFACE/WSGI and run APPLICATION typically known as API/send json response/send text or html/execute py script file etc. CGI helps the client to come inside the server and after the client enters it all depends on API, which program to run.
 
 ---
+#### HTTP Security : Access Control (Req./Res. Header based Mech.)
+ - **CSP (Content Security Policy)** - CSP is an HTTP header that allows site operators fine-grained control over where resources on their site can be loaded from. It is used to detect and mitigate certain types of website related attacks like XSS, click-jacking, etc. It controls resources the client is allowed to load for a given page
+ - **Same origin & Cross origin Policy (HTTP Response Headers)**
+ Origin - two URLs have the same origin if the protocol/scheme, port (if specified), and host/domain are the same for both. You may see this referenced as the "scheme/host/port tuple", or just "tuple".  To Allow cross origin use CORS (with http cookies samesite flag) and to block them use CSRF/Anti-CSRF tokens. 
+   - **CORS (Cross-origin resource sharing) :** CORS isn’t actually enforced by the server, but rather the browser. The server simply states the sites that are allowed cross origin access through the Access-Control-Allow-Origin header in all its responses. It is up to the browser to respect this policy. Ajax, XMLhttpRequest, fetch() etc.
+     - **Response Header**
+       - Access-Control-Allow-Origin
+       - Access-Control-Allow-Methods
+       - Access-Control-Allow-Headers
+       - Access-Control-Allow-Credentials
+       - Access-Control-Max-Age
+       - Access-Control-Expose-Headers
+     - **Request Header**
+       - Origin
+       - Access-Control-Request-Method
+       - Access-Control-Request-Headers
+   - **CORP (Cross origin resource policy) :** Prevents other domains from reading response of the resources to which this header is applied. CORP only affects cross-origin requests that can already be made without requiring CORS to relax the same-origin policy - i.e. requests which are already allowed by the same-origin policy, such as cross-origin requests for images, CSS stylesheets, and for JavaScript scripts.  conveys a desire that the browser blocks no-cors cross-origin/cross-site requests to the given resource. CORP complements CORB. The COEP when used upon a document, can be used to require subresources to either be same-origin with the document, or come with CORP to indicate they are okay with being embedded. This is why the cross-origin value exists.
+   - **COEP (Cross origin embedder policy) :** Allows a server to declare an embedder policy for a given document. It prevents a document from loading any cross-origin resources that don't explicitly grant the document permission (using CORP or CORS).
+   - **COOP (Cross origin opener policy) :** Prevents other domains from opening/controlling a window. It allows you to ensure a top-level document does not share a browsing context group with cross-origin documents.
+   - **CORB (Cross origin read blocking) :** Mechanism to prevent some cross-origin reads by default.
+ - **Others** - HPKP, HSTS/HTTPS, Cookie security, X-Content-Type, X-Frame, etc.
+---
 ![HTTP Auth](images/HTTP-Auth.jpg)
