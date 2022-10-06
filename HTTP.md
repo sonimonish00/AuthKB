@@ -11,7 +11,8 @@
  - Mostly uses Reliable/TCP-IP Connection over port 80 (HTTP3/QUIC uses UDP)
  - Stateless But not Sessionless : HTTP Cookies provide session Mechanism/Stateful sessions.
  - Proxies/Middleware (B/W Client & Server) : Cache, Filter, Log, Load balance, Auth./Cookies, CORS, Tunnel, etc.
- - API - XMLHttpRequest, server-sent events etc.
+ - API - XMLHttpRequest, server-sent events etc. [REST, SOAP etc.]
+ - HTTP cookies violate the REST architectural style because even without referencing a session state stored on the server, they are independent of session state (they affect previous pages of the same website in the browser history) and they have no defined semantics.
  - Cache - private, Shared (Proxy, Managed)
  - Status Code : 1xx - Info | 2xx - Success | 3xx - Redirect | 4xx - Client Error | 5xx - Server Error
  - Authorization ~ Request Header (Client) <=> Authentication ~ Response Header (Server)
