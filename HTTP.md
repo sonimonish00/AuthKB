@@ -10,7 +10,7 @@
  
  - Based on Client Server (Req-Res) Model
  - Mostly uses Reliable/TCP-IP Connection over port 80 (HTTP3/QUIC uses UDP). HTTP is simplex.
- - Stateless But not Sessionless : HTTP + Cookies = Stateful sessions. (Web Socket/Socket.io is Stateful & Duplex, works on top of http)
+ - Stateless But not Sessionless : HTTP + Cookies = Stateful sessions. (Web Socket/Socket.io is Stateful & Duplex and not scalable like http, works on top of http) (2 type of scaling - horizontal/add physical resource via distributed mechanism & Vertical/increase capacity of existing resource)
  - Proxies/Middleware (B/W Client & Server) : Cache, Filter, Log, Load balance, Auth./Cookies, CORS, Tunnel, etc.
  - API - XMLHttpRequest, server-sent events etc. [REST, SOAP etc.]
  - HTTP cookies violate the REST architectural style because even without referencing a session state stored on the server, they are independent of session state (they affect previous pages of the same website in the browser history) and they have no defined semantics.
